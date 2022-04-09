@@ -57,14 +57,32 @@ def strassen(x, y):
 print("Dame el tamaño de las matrices (siendo estas de nxn)")
 n = int(input())
 
+# Inicializamos las variables y los arreglos
+# [[1, 0, 0], [0, 1, 0], [0, 0, 1]]   [[-1, 0, 0], [0, -1, 0], [0, 0, -1]]
+x = [[ 0 for j in range(n)]for i in range(n)]
+y = [[ 0 for j in range(n)]for i in range(n)]
 
-x = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
-y = np.array([[-1, 0, 0], [0, -1, 0], [0, 0, -1]])
+# Realizamos el chiclo para llenar las matrices
+print("\tMatriz X")
+for i in range(n):
+    for j in range(n):
+        aux = int(input("Dame el valor de la posicion ["+str(i)+"]["+str(j)+"]: "))
+        x[i][j]=x[i][j]+aux
+
+print("\tMatriz Y")
+for i in range(n):
+    for j in range(n):
+        aux = int(input("Dame el valor de la posicion ["+str(i)+"]["+str(j)+"]: "))
+        y[i][j]=y[i][j]+aux
+
+# Convertimos las matrices a arreglos numpy para poder realizar la multiplicacion
+x = np.array(x)
+y = np.array(y)
 
 # Imprimimos las matrices a multiplicar
-print("Matriz 1:")
+print("\nMatriz X:")
 print(x)
-print("Matriz 2:")
+print("Matriz Y:")
 print(y)
 
 # Inicializamos la variable tiempo_in que nos ayudara a
@@ -72,7 +90,7 @@ print(y)
 tiempo_in = time()
 
 # Imprimimos la matriz resultante de la multiplicacion
-print("Matriz resultante:")
+print("\nMatriz resultante:")
 print(strassen(x, y))
 
 # Calculamos el tiempo que tardo en encontrarlo
